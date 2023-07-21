@@ -6,6 +6,7 @@
 
 // Components
 import App from './App.vue'
+import router from './router'//router.tsをインポート
 
 // Composables
 import { createApp } from 'vue'
@@ -18,3 +19,5 @@ const app = createApp(App)
 registerPlugins(app)
 
 app.mount('#app')
+
+app.use(router)//Vue Routerを使用する

@@ -9,9 +9,14 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
+      <v-text-field
+        v-model="search"
+        clearable
+        hide-details
+        label="タグ検索"
+        prepend-inner-icon="mdi-magnify"
+        single-line>
+      </v-text-field>
 
       <v-btn icon>
         <v-icon>mdi-heart</v-icon>

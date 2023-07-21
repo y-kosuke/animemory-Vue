@@ -1,5 +1,6 @@
 // Composables
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+
 
 const routes = [
   {
@@ -7,6 +8,11 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/Home.vue'),
   },
+  // {
+  //   path: '../views/Photolibrary.vue',
+  //   name: 'Photolibrary',
+  //   component: () => import('@/views/photolibrary.vue'),
+  // },
 ]
 
 const router = createRouter({

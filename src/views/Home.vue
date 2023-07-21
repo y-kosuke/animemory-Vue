@@ -5,9 +5,10 @@
     <tool-bar />
     <profile />
     <pagination />
-    <camera />
+    <photo />
+    <router-link to="../views/Photolibrary.vue">移動</router-link>
+    <router-view></router-view>
   </v-container>
-
 </template>
 
 <script lang="ts" setup>
@@ -16,5 +17,5 @@ import newAccount from "@/components/new-account.vue";
 import toolBar from "@/components/tool-bar.vue";
 import profile from "@/components/profile.vue";
 import pagination from "@/components/pagination.vue";
-import camera from "@/components/camera.vue";
+import photo from "@/components/photo.vue";
 </script>
