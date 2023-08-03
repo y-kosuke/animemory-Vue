@@ -8,11 +8,26 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/Home.vue'),
   },
-  // {
-  //   path: '../views/Photolibrary.vue',
-  //   name: 'Photolibrary',
-  //   component: () => import('@/views/photolibrary.vue'),
-  // },
+  {
+    path: '/Photolibrary',
+    name: 'Photolibrary',
+    component: () => import('@/views/Photolibrary.vue'),
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: () => import('@/views/Login.vue'),
+  },
+  {
+    path: '/Login/Register',
+    name: 'Register',
+    component: () => import('@/views/Register.vue'),
+  },
+  {
+    path: '/Login/changePassword',
+    name: 'ForgetPassword',
+    component: () => import('@/views/ForgetPassword.vue'),
+  },
 ]
 
 const router = createRouter({

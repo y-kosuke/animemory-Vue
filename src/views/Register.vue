@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import login from '@/components/login.vue';
+  import newAccount from '@/components/new-account.vue';
 </script>
 
 <template>
   <v-container>
-    <login />
+    <newAccount />
   </v-container>
 </template>
