@@ -6,6 +6,7 @@
         fullName: 'Ani Memory',
         email: 'sample.anime@memory.com',
       },
+      dialog: false,
     }),
   }
 </script>
@@ -46,7 +47,24 @@
 
               <v-divider class="my-3"></v-divider>
 
-              <v-btn color="red" rounded variant="text">退会</v-btn>
+              <v-row justify="center">
+                <v-dialog v-model="dialog" persistent width="500px">
+                  <template v-slot:activator="{ props }">
+                    <v-btn color="red" rounded variant="text" v-bind="props">退会</v-btn>
+                  </template>
+                  <v-card>
+                    <v-card-title style="color: red;" class="text-h4">
+                      退会手続き
+                    </v-card-title>
+                    <v-card-text>退会手続きを行うと<br>アプリに保存した写真やアカウント情報が<br>全て削除され、復元は一切出来ませんが<br>本当に退会されますか？</v-card-text>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn color="red" variant="text" @click="dialog = false" href="/quit">退会する</v-btn>
+                      <v-btn color="blue" variant="text" @click="dialog = false">キャンセル</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-row>
             </div>
           </v-card-text>
         </v-card>
