@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const first = ref(null);
 const email = ref(null);
@@ -10,38 +10,49 @@ const dialog = ref(false);
 const inline = ref(null);
 const year = ref("");
 const month = ref("");
-const day = ref ("");;
+const day = ref("");
+
 
 const resetDay = (): void => {
   day.value = ''
 }
 
-const years = (): unknown => {
+const years = computed<any>(() => {
   const years = []
   for (let year = 1950; year <= new Date().getFullYear(); year++) {
     years.push(year)
   }
   return years
-}
+})
 
-const months = (): unknown => {
-  const months = [...Array(12)].map((ele, i) => i + 1)
+const months = computed<any[]>(() => {
+  const months = [...Array(12)].map((_, index) => {
+    return String(index + 1)
+  })
   return months
-}
+})
 
-const days = (year:any, month:any): any  => {
+const days = computed<any[]>((year:number, month:number) => {
   let days = []
-  if ((month.value === 2 && year.value % 4 === 0 && year.value % 100 !== 0) || (month.value === 2 && year.value % 400 === 0)) {
-    days = [...Array(29)].map((ele, i) => i + 1)
-  } else if (month.value === 2) {
-    days = [...Array(28)].map((ele, i) => i + 1)
-  } else if (month.value === 4 || month.value === 6 || month.value === 9 || month.value === 11) {
-    days = [...Array(30)].map((ele, i) => i + 1)
+  if ((month === 2 && year % 4 === 0 && year % 100 !== 0) || (month === 2 && year % 400 === 0)) {
+    days = [...Array(29)].map((_, index) => {
+      return String(index + 1)
+    })
+  } else if (month === 2) {
+    days = [...Array(28)].map((_, index) => {
+      return String(index + 1)
+    })
+  } else if (month === 4 || month === 6 || month === 9 || month === 11) {
+    days = [...Array(30)].map((_, index) => {
+      return String(index + 1)
+    })
   } else {
-    days = [...Array(31)].map((ele, i) => i + 1)
+    days = [...Array(31)].map((_, index) => {
+      return String(index + 1)
+    })
   }
   return days
-}
+})
 </script>
 
 <template>
@@ -70,10 +81,6 @@ const days = (year:any, month:any): any  => {
           <v-select label="日" :items="days" v-model="day" filled dense></v-select>
         </v-col>
       </v-row>
-
-      <!-- <label>生年月日</label>
-      <v-select color="blue" label="月" :items="['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']"></v-select>
-      <v-select color="blue" label="日" :items="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']"></v-select> -->
 
       <label>性別</label>
       <v-radio-group v-model="inline" inline>

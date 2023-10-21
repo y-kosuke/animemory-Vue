@@ -53,7 +53,7 @@ const required = (v:string): string | boolean => {
 
         <v-card-text class="text-center">
           <!-- hrefの#のところに遷移させるやつかく -->
-          <a class="text-blue text-decoration-none" href="/Login/Register" rel="noopener noreferrer" target="_blank">
+          <a class="text-blue text-decoration-none" href="/login/register" rel="noopener noreferrer" target="_blank">
             新規会員登録 <v-icon icon="mdi-chevron-right"></v-icon>
           </a>
         </v-card-text>

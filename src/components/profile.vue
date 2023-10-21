@@ -39,7 +39,7 @@
 
               <v-divider class="my-3"></v-divider>
 
-              <v-btn rounded variant="text">マイページ</v-btn>
+              <v-btn rounded variant="text" href="/my_profile">マイページ</v-btn>
 
               <v-divider class="my-3"></v-divider>
 
@@ -52,7 +52,7 @@
                   <template v-slot:activator="{ props }">
                     <v-btn color="red" rounded variant="text" v-bind="props">退会</v-btn>
                   </template>
-                  <v-card>
+                  <v-card style="height: 250px; width: 500px;">
                     <v-card-title style="color: red;" class="text-h4">
                       退会手続き
                     </v-card-title>

@@ -4,8 +4,7 @@
 <template>
   <v-container>
     <v-row justify="space-around">
-      <v-col v-for="n in 12" :key="n" class="d-flex child-flex" cols="3">
-        <div class="text-subtitle-2">テスト</div>
+      <v-col v-for="n in 12" :key="n" class="d-flex child-flex" cols="4">
         <v-img
         :src="`https://picsum.photos/500/300?image=${n * 10 + 5}`"
         :lazy-src="`https://picsum.photos/10/6?image=${n * 10 + 5}`"

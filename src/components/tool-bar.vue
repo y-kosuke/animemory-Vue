@@ -39,7 +39,7 @@ const items = ref([{ title: '写真一覧' }, { title: 'お気に入り写真'},
       </div>
 
       <v-btn icon>
-        <v-icon>mdi-access-point</v-icon>
+        <v-icon>mdi-heart</v-icon>
       </v-btn>
 
       <v-btn icon>
@@ -50,7 +50,7 @@ const items = ref([{ title: '写真一覧' }, { title: 'お気に入り写真'},
         <v-divider class="mx-3 align-self-center" length="24" thickness="2" vertical></v-divider>
       </template>
 
-      <v-btn href="/Login">ログイン</v-btn>
+      <v-btn href="/Login" append-icon="mdi-account">ログイン</v-btn>
     </v-toolbar>
   </div>
 </template>

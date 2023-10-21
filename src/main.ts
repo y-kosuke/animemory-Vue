@@ -10,11 +10,11 @@ import router from './router'//router.tsをインポート
 
 // Composables
 import { createApp } from 'vue'
-
 // Plugins
 import { registerPlugins } from '@/plugins'
 
 const app = createApp(App)
+
 
 registerPlugins(app)
 

@@ -32,6 +32,11 @@ const routes = [
     path: '/quit',
     name: 'QuitCompletion',
     component: () => import('@/views/QuitCompletion.vue'),
+  },
+  {
+    path: '/my_profile',
+    name: 'MyProfile',
+    component: () => import('@/views/MyProfile.vue'),
   }
 ]
 
