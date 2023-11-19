@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { ref, computed } from 'vue';
-import { useUsersStore } from '@/store/user';
-const usersStore = useUsersStore();
 
-const name = ref(null);
+const first = ref(null);
 const email = ref(null);
 const password1 = ref(null);
 const password2 = ref(null);
@@ -14,7 +12,6 @@ const inline = ref(null);
 const year = ref("");
 const month = ref("");
 const day = ref("");
-const visible = ref(true);
 
 const resetDay = (): void => {
   day.value = ''
@@ -57,12 +54,22 @@ const days = computed<any[]>((year:number, month:number) => {
   return days
 })
 
-const register = () => {
-  if(!name.value && !email.value && !password1.value && !inline.value) {
-    console.log("バリデーションエラー")
-  } else {
-    var birthday = year.value + "/" + month.value + "/" + day.value
-    usersStore.postUser(name.value!, email.value!, password1.value!, birthday, inline.value!)
+const url = "http://localhost:80/api/users"
+const inputUser = async () => {
+  try {
+    const response = await axios.post(url, {
+      params: {},
+    });
+    const presignedUrl = response.data.url;
+    await axios.put(presignedUrl, {
+      headers: {
+        
+      },
+    });
+    console.log("繋ぎ込み成功");
+  } catch(err) {
+    console.log("繋ぎ込み失敗");
+    console.log(err);
   }
 }
 </script>
@@ -70,10 +77,10 @@ const register = () => {
 <template>
   <v-card class="mx-auto" max-width="600">
     <h2 style="text-align: center;">AniMemory</h2>
-    <h3 style="text-align: center;">AniMemoryアカウント作成</h3>
+    <h3 style="text-align: center;">AniMemoryアカウント編集</h3>
 
     <v-container>
-      <v-text-field v-model="name" color="primary" label="お名前" placeholder="名前を入力してください" variant="underlined"></v-text-field>
+      <v-text-field v-model="first" color="primary" label="お名前" placeholder="名前を入力してください" variant="underlined"></v-text-field>
 
       <v-text-field v-model="email" color="primary" label="メールアドレス" placeholder="「.」と「@」が必ず入るメールアドレスを入力してください" variant="underlined"></v-text-field>
 
@@ -99,7 +106,6 @@ const register = () => {
         <v-radio label="男性" value="radio1"></v-radio>
         <v-radio label="女性" value="radio2"></v-radio>
       </v-radio-group>
-
     </v-container>
 
     <v-divider></v-divider>
@@ -108,11 +114,11 @@ const register = () => {
       <v-spacer></v-spacer>
 
       <div class="text-center">
-        <v-btn color="blue" @click="register">登録</v-btn>
+        <v-btn color="blue" @click="inputUser">変更</v-btn>
 
         <v-dialog v-model="dialog" width="auto">
           <v-card>
-            <v-card-text style="text-align: center;">アカウントの作成が完了しました。<br>トップページに戻るボタンを押して<br>登録いただいたメールアドレスとパスワードでログインしてください。
+            <v-card-text style="text-align: center;">アカウント変更が完了しました。
             </v-card-text>
             <v-card-actions>
               <v-btn color="red" block @click="dialog = false" href="/">トップページに戻る</v-btn>

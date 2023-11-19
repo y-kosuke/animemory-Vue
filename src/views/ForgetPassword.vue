@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import toolBar from '@/components/tool-bar.vue';
   import { ref } from 'vue';
 
   const email = ref("");
@@ -11,7 +10,6 @@
 </script>
 
 <template>
-  <toolBar />
   <div>
     <v-container>
       <v-row align="center" no-gutters style="height: 150px;">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { ref } from 'vue';
+  import axios from 'axios';
 
   const first = ref(null);
   const second = ref(null);
@@ -8,6 +9,27 @@
   const dialog = ref(false);
   const required = (v:string): string | boolean => {
   return !!v || '必ず入力してください'
+}
+const url = "http://localhost:80/api/fileUpload"
+const inputFile = ref<HTMLInputElement | null> (null);
+const uploadImage =async () => {
+  const file = inputFile.value?.files?.[0];
+  if (!file) return;
+  try {
+    const response = await axios.get(url, {
+      params: { file_name: file.name },
+    });
+    const presignedUrl = response.data.url;
+    await axios.put(presignedUrl, file, {
+      headers: {
+        'Content-Type': file!.type,
+      },
+    });
+    console.log("Successfully uploaded");
+  } catch(err) {
+    console.log("Failed to upload");
+    console.log(err);
+  }
 }
 </script>
 
@@ -26,7 +48,7 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-file-input label="追加したい写真を選んでください" variant="filled" prepend-icon="mdi-camera"></v-file-input>
+                <v-file-input label="追加したい写真を選んでください" variant="filled" prepend-icon="mdi-camera" ref="inputFile"></v-file-input>
               </v-col>
               <v-col cols="12">
                 <v-text-field v-model="first" color="primary" label="写真タイトル(必須)" placeholder="写真のタイトルを記入してください" 
@@ -48,7 +70,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue-darken-1" variant="text" @click="dialog = false">キャンセル</v-btn>
-          <v-btn color="blue-darken-1" variant="text" @click="dialog = false">追加</v-btn>
+          <v-btn color="blue-darken-1" variant="text" @click="uploadImage">追加</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

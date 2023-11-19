@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 const search = ref("");
 
-const items = ref([{ title: '写真一覧' }, { title: 'お気に入り写真'}, { title: '聖地巡礼アルバム'}]);
+const items = ref([{ title: '写真一覧' }, { title: 'お気に入り写真'}]);
 
 </script>
 

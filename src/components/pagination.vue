@@ -1,11 +1,7 @@
-<script lang="ts">
-  export default {
-    data() {
-      return {
-        page: 1,
-      }
-    },
-  }
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const page = ref(1);
 </script>
 
 <template>
